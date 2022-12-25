@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme.light,
       darkTheme: appTheme.dark,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       title: 'Chatter',
       builder: (context, child) {
         return StreamChatCore(

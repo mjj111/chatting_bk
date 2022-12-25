@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:chatter/helpers.dart';
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:chatter/theme.dart';
 import 'package:chatter/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,58 +53,61 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        appBar: AppBar(
-          leadingWidth: 54,
-          leading: Align(
-            alignment: Alignment.centerRight,
-            child: IconBackground(
-              icon: CupertinoIcons.back,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-          title: const _AppBarTitle(),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Center(
-                child: IconBorder(
-                  icon: CupertinoIcons.video_camera_solid,
-                  onTap: () {},
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Center(
-                child: IconBorder(
-                  icon: CupertinoIcons.phone_solid,
-                  onTap: () {},
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: MessageListCore(
-                loadingBuilder: (context) {
-                  return const Center(child: CircularProgressIndicator());
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("lib/assets/chatting_bk.jpg"), fit: BoxFit.cover)),
+
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color(0xFFC8E8FF),
+            leadingWidth: 54,
+            leading: Align(
+              alignment: Alignment.centerRight,
+
+              child: IconBackground(
+                icon: CupertinoIcons.back,
+                onTap: () {
+                  Navigator.of(context).pop();
                 },
-                emptyBuilder: (context) => const SizedBox.shrink(),
-                errorBuilder: (context, error) =>
-                    DisplayErrorMessage(error: error),
-                messageListBuilder: (context, messages) =>
-                    _MessageList(messages: messages),
               ),
             ),
-            const _ActionBar(),
-          ],
+            title: const _AppBarTitle(),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Center(
+                  child: IconBackground(
+                    icon: Icons.block_outlined,
+                    onTap: () {},
+                  ),
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.transparent,
+
+          body: Column(
+            children: [
+              Expanded(
+                child: MessageListCore(
+                  loadingBuilder: (context) {
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  emptyBuilder: (context) => const SizedBox.shrink(),
+                  errorBuilder: (context, error) =>
+                      DisplayErrorMessage(error: error),
+                  messageListBuilder: (context, messages) =>
+                      _MessageList(messages: messages),
+                ),
+              ),
+              const _ActionBar(),
+            ],
+          ),
         ),
       ),
     );
@@ -188,9 +190,9 @@ class _MessageTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: const BorderRadius.only(
+              decoration:const BoxDecoration(
+                color: Color(0xFFD6E3EB),
+                borderRadius:  BorderRadius.only(
                   topLeft: Radius.circular(_borderRadius),
                   topRight: Radius.circular(_borderRadius),
                   bottomRight: Radius.circular(_borderRadius),
@@ -207,7 +209,7 @@ class _MessageTile extends StatelessWidget {
               child: Text(
                 Jiffy(message.createdAt.toLocal()).jm,
                 style: const TextStyle(
-                  color: AppColors.textFaded,
+                  color: Color(0xFF9899A5),
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
@@ -227,7 +229,6 @@ class _MessageOwnTile extends StatelessWidget {
   }) : super(key: key);
 
   final Message message;
-
   static const _borderRadius = 26.0;
 
   @override
@@ -242,7 +243,7 @@ class _MessageOwnTile extends StatelessWidget {
           children: [
             Container(
               decoration: const BoxDecoration(
-                color: AppColors.secondary,
+                color: Color(0xFFFFF6BE),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(_borderRadius),
                   bottomRight: Radius.circular(_borderRadius),
@@ -254,7 +255,7 @@ class _MessageOwnTile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12.0, vertical: 20),
                 child: Text(message.text ?? '',
                     style: const TextStyle(
-                      color: AppColors.textLigth,
+                      color: Color(0xFF000000),
                     )),
               ),
             ),
@@ -263,7 +264,7 @@ class _MessageOwnTile extends StatelessWidget {
               child: Text(
                 Jiffy(message.createdAt.toLocal()).jm,
                 style: const TextStyle(
-                  color: AppColors.textFaded,
+                  color: Color(0xFF9899A5),
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
@@ -325,7 +326,7 @@ class __DateLableState extends State<_DateLable> {
         padding: const EdgeInsets.symmetric(vertical: 32.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
+            color: Color(0xFFD6E3EB),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
@@ -335,7 +336,7 @@ class __DateLableState extends State<_DateLable> {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: AppColors.textFaded,
+                color: Color(0xFF000000),
               ),
             ),
           ),
@@ -395,7 +396,7 @@ class _AppBarTitle extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
-                            color: Colors.red,
+                            color: Color(0xFFFAD1E3),
                           ),
                         );
                       default:
@@ -450,7 +451,7 @@ class _AppBarTitle extends StatelessWidget {
             style: const TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: Color(0xFF1B6397),
             ),
           );
         }
@@ -608,56 +609,66 @@ class __ActionBarState extends State<_ActionBar> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      top: false,
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                right: BorderSide(
-                  width: 2,
-                  color: Theme.of(context).dividerColor,
+    return Container(
+      color:const Color(0xFFC8E8FF),
+      child: SafeArea(
+        bottom: true,
+        top: false,
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  right: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).dividerColor,
+                  ),
+                ),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 2.0,top:2.0 ,left: 16.0),
+                child: TextField(
+                  controller: controller.textEditingController,
+                  onChanged: (val) {
+                    controller.text = val;
+                  },
+                  style: const TextStyle(fontSize: 14),
+                  decoration: const InputDecoration(
+                    hintText: '내용을 입력하시오.',
+                    // border: InputBorder.none,
+
+                    filled: true,
+                    fillColor: Color(0xFFFFFFFF),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide: BorderSide(width: 4.0,color: Color(0xFFFAD1E3)),
+                    ),
+                  ),
+                  onSubmitted: (_) => _sendMessage(),
                 ),
               ),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Icon(
-                CupertinoIcons.camera_fill,
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 24.0,
+                top : 1,
+                bottom: 1,
+              ),
+              child: GlowingActionButton(
+                color: const Color(0xFFFAD1E3),
+                size : 50,
+                icon: Icons.send_rounded,
+                onPressed: _sendMessage,
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: TextField(
-                controller: controller.textEditingController,
-                onChanged: (val) {
-                  controller.text = val;
-                },
-                style: const TextStyle(fontSize: 14),
-                decoration: const InputDecoration(
-                  hintText: 'Type something...',
-                  border: InputBorder.none,
-                ),
-                onSubmitted: (_) => _sendMessage(),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 12,
-              right: 24.0,
-            ),
-            child: GlowingActionButton(
-              color: AppColors.accent,
-              icon: Icons.send_rounded,
-              onPressed: _sendMessage,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

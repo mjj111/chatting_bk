@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 import '../app.dart';
-import 'home_screen.dart';
+import 'matched_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   static Route get route => MaterialPageRoute(

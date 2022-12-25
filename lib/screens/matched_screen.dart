@@ -1,4 +1,5 @@
 import 'package:chatter/pages/pages.dart';
+import 'package:chatter/screens/ma.dart';
 import 'package:chatter/screens/screens.dart';
 import 'package:chatter/theme.dart';
 import 'package:chatter/widgets/widgets.dart';
@@ -18,14 +19,14 @@ class HomeScreen extends StatelessWidget {
   final pages = const [
     MessagesPage(),
     NotificationsPage(),
-    CallsPage(),
+    MatchingPage(),
     ContactsPage(),
   ];
 
   final pageTitles = const [
     'Messages',
     'Notifications',
-    'Calls',
+    'Matching',
     'Contacts',
   ];
 
@@ -124,13 +125,6 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 isSelected: (selectedIndex == 0),
                 onTap: handleItemSelected,
               ),
-              _NavigationBarItem(
-                index: 1,
-                lable: 'Notifications',
-                icon: CupertinoIcons.bell_solid,
-                isSelected: (selectedIndex == 1),
-                onTap: handleItemSelected,
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: GlowingActionButton(
@@ -149,18 +143,19 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                   },
                 ),
               ),
-              _NavigationBarItem(
-                index: 2,
-                lable: 'Calls',
-                icon: CupertinoIcons.phone_fill,
-                isSelected: (selectedIndex == 2),
-                onTap: handleItemSelected,
-              ),
+
               _NavigationBarItem(
                 index: 3,
                 lable: 'Contacts',
                 icon: CupertinoIcons.person_2_fill,
                 isSelected: (selectedIndex == 3),
+                onTap: handleItemSelected,
+              ),
+              _NavigationBarItem(
+                index: 2,
+                lable: 'Messages',
+                icon: CupertinoIcons.bubble_left_bubble_right_fill,
+                isSelected: (selectedIndex == 2),
                 onTap: handleItemSelected,
               ),
             ],

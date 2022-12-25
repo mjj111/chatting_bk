@@ -17,24 +17,15 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,16 +43,40 @@ class DefaultFirebaseOptions {
     }
   }
 
-  /// TODO Setup Firebase and Stream Chat Firebase Extensions. See episode four.
-  /// Then run:
-  /// ```bash
-  /// flutterfire configure
-  /// ```
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyC6ZN1FaMjvl2SfQgiHDwpBjI6MbupThcQ',
+    appId: '1:617643061997:web:058d6715bc144d2ab452e4',
+    messagingSenderId: '617643061997',
+    projectId: 'chatter-a-39bd4',
+    authDomain: 'chatter-a-39bd4.firebaseapp.com',
+    storageBucket: 'chatter-a-39bd4.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'FAKE',
-    appId: 'FAKE',
-    messagingSenderId: 'FAKE',
-    projectId: 'FAKE',
-    storageBucket: 'FAKE',
+    apiKey: 'AIzaSyAwaLwPZtjhaaX8bXz4NNC480GUVuZQtMo',
+    appId: '1:617643061997:android:fd0ab27ef25bc82cb452e4',
+    messagingSenderId: '617643061997',
+    projectId: 'chatter-a-39bd4',
+    storageBucket: 'chatter-a-39bd4.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBbID_U4Qj5vTWWBaeu-B_Pcq4Mba40Xl8',
+    appId: '1:617643061997:ios:f8147e681fe11903b452e4',
+    messagingSenderId: '617643061997',
+    projectId: 'chatter-a-39bd4',
+    storageBucket: 'chatter-a-39bd4.appspot.com',
+    iosClientId: '617643061997-4pgg16js0mfc652j6bb6ct6c5gn6uvav.apps.googleusercontent.com',
+    iosBundleId: 'com.example.chatter',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBbID_U4Qj5vTWWBaeu-B_Pcq4Mba40Xl8',
+    appId: '1:617643061997:ios:f8147e681fe11903b452e4',
+    messagingSenderId: '617643061997',
+    projectId: 'chatter-a-39bd4',
+    storageBucket: 'chatter-a-39bd4.appspot.com',
+    iosClientId: '617643061997-4pgg16js0mfc652j6bb6ct6c5gn6uvav.apps.googleusercontent.com',
+    iosBundleId: 'com.example.chatter',
   );
 }
